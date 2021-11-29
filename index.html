@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0a51e2faaa.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container" id="header">
+        <div class="row justify-content-center align-items-end py-4">
+            <div class="col text-end">
+                <img src="./images/undraw_lost_online_re_upmy.svg" alt="" srcset="">
+            </div>
+            <div class="col text-start p-0">
+                <span class="title-header">github's</span><br>
+                <span class="title-header">finger<b><i class="title-focus">prints</i></b></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-flex background-primary py-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center text-center py-2">
+                <span class="text-white h3">Quem você vai <b class="text-dark">investigar</b> hoje?</span>
+            </div>
+            <div class="row justify-content-center align-items-end text-center">
+                <div class="col d-flex text-center justify-content-center">
+                    <input type="text" class="search-area px-2 py-1 me-2" placeholder="Ex: User" id="query">
+                    <select class="form-select me-2" aria-label="Default select example" id="select">
+                        <option selected value="">Pesquisar por:</option>
+                        <option value="user">Usuário</option>
+                        <option value="repo">Repositório</option>
+                    </select>
+                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        onclick="search()">
+                        <i class="fas fa-search text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-3">
+        <div class="row h-100 justify-content-center" id="my-user">
+            <div class="col-12 col-lg-4 text-center">
+                <div id="user-img" class="img-responsive text-center"></div>
+                <div id="user-info"></div>
+            </div>
+            <div class="col text-start ps-4">
+                <div class="row" id="content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-flex p-5">
+        <div class="row" id="users-example"></div>
+    </div>
+
+    <div class="container-fluid justify-content-center text-center py-3 bg-light">
+        <i class="fab fa-github"></i>
+        Utilizando API do github
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        onload="teste()">
+        <div class="modal-dialog modal-xl" role="presentation">
+            <div class="modal-content" id="modal-resp">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Resultado da pesquisa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-flex">
+
+                        <div class="row">
+                            <div class="col" id="modal-resp-search">
+                            </div>
+                        </div>
+                        <div class="row text-center justify-content-center pt-2">
+                            <div class="col-4" id="paginacao"></div>
+                            <div class="col-12" id="erro"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
