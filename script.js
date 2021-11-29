@@ -159,13 +159,26 @@ function seguidores() {
     let html = `
     `;
     dados.forEach(follower => {
+        console.log(follower)
 
-        html += `
+        let xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+            let response = JSON.parse(xhr.responseText);
+            console.log(response)
+            html += `
                  <div class="col">
                         <img src="${follower.avatar_url}" class="rounded-circle pe-2" style="width:10rem" alt="">
                         <a href="${follower.html_url}"><b>${follower.login}</b></a>
+                        <p class=" mb-1">
+                            <i class="fas fa-code-branch me-1"></i>
+                                ${response.public_repos} repositórios
+                        </p>
                     </div>
         `
+            console.log(response)
+        }
+        xhr.open('GET', `${follower.url}`);
+        xhr.send()
 
     })
     divDinamica.innerHTML = html;
@@ -218,7 +231,7 @@ function responseSearch() {
 function pagination() {
     const div = document.querySelector('#modal-resp-search');
     const divPaginacao = document.querySelector('#paginacao')
-    div.innerHTML = ``
+    div.innerHTML = ''
 
     if (responseSearchElements.tipo === 'user') {
         const bntPaginationAnt = page <= 0 ? 'disabled' : '';
