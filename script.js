@@ -156,33 +156,44 @@ function repositorios() {
 
 function seguidores() {
     let dados = JSON.parse(this.responseText)
-    let html = `
-    `;
+    divDinamica.innerHTML = '<div class="col-4"> <div class="list-group">';
     dados.forEach(follower => {
-        console.log(follower)
-
         let xhr = new XMLHttpRequest();
-        xhr.onload = () => {
-            let response = JSON.parse(xhr.responseText);
-            console.log(response)
-            html += `
-                 <div class="col">
-                        <img src="${follower.avatar_url}" class="rounded-circle pe-2" style="width:10rem" alt="">
-                        <a href="${follower.html_url}"><b>${follower.login}</b></a>
-                        <p class=" mb-1">
-                            <i class="fas fa-code-branch me-1"></i>
-                                ${response.public_repos} repositórios
-                        </p>
-                    </div>
-        `
-            console.log(response)
-        }
-        xhr.open('GET', `${follower.url}`);
+        xhr.onload = seguidoresAux;
+        xhr.open('GET', follower.url);
         xhr.send()
 
     })
-    divDinamica.innerHTML = html;
+    divDinamica.innerHTML += '</div> </div>';
 }
+
+function seguidoresAux() {
+    let response = JSON.parse(this.responseText);
+    let html = ''
+    html += `
+             <a href="${response.html_url}"  target="_blank" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="w-100 justify-content-between">
+                  <h5 class="mb-1">${response.login} </h5>
+                  <p class="mb-1"><i>${response.name}</i></p>
+                </div>
+                <div class="d-flex">
+                <img class="rounded-circle" style="width: 6rem" src="${response.avatar_url}" >
+                   <div class="ms-2">
+                    <p class=" mb-1">
+                                <i class="fas fa-users me-1"></i>
+                                ${response.followers} seguidores
+                            </p>
+                            <p class=" mb-1">
+                                <i class="fas fa-code-branch me-1"></i>
+                                ${response.public_repos} repositórios
+                            </p>
+                    </div>
+                </div>
+            </a>
+  `
+    divDinamica.innerHTML += html
+}
+
 
 function paginacaoDinamica(direcao) {
     if (direcao === 'ant') {
@@ -200,6 +211,7 @@ function search() {
 
     if (query === '' || tipo === '') {
         const divPaginacao = document.querySelector('#erro')
+        divPaginacao.innerHTML = ''
         divPaginacao.innerHTML = `
              <img style="width:20rem" src="./images/undraw_not_found_-60-pq.svg" alt="" srcset="">
              <h1>Oops.. Parece que sua pesquisa foi inválida!</h1>
